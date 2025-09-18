@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udutha Varun - Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--primary-gradient);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-gradient);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .nav-social a:hover {
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 0 2rem;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .hero-tagline {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-avatar {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            font-weight: 700;
+            margin: 0 auto;
+            box-shadow: var(--shadow-xl);
+            transition: transform 0.3s ease;
+        }
+
+        .about-avatar:hover {
+            transform: scale(1.05);
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem 1rem;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-5px);
+            border-color: transparent;
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .skill-badge i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .skill-badge:hover i {
+            color: white;
+        }
+
+        .skill-badge span {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Education Section */
+        .education-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
+        }
+
+        .education-item {
+            background: var(--bg-primary);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            border: 2px solid var(--border-color);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .education-item::before {
+            content: '';
+            position: absolute;
+            left: -2.75rem;
+            top: 2rem;
+            width: 1rem;
+            height: 1rem;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .education-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .education-item h3 {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item h4 {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item .duration {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .education-item .grade {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .project-image {
+            height: 200px;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .project-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-features {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .project-features li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .project-features li::before {
+            content: '•';
+            color: var(--text-primary);
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-badge {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .project-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .project-btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .project-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Certifications & Achievements Section */
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .cert-card {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+            background: var(--bg-primary);
+        }
+
+        .cert-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .cert-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .cert-list li {
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .cert-list li::before {
+            content: '✓';
+            color: #48bb78;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .cert-list strong {
+            color: var(--text-primary);
+        }
+
+        /* Resume Section */
+        .resume-content {
+            text-align: center;
+            background: var(--bg-secondary);
+            padding: 4rem 2rem;
+            border-radius: 24px;
+            border: 2px solid var(--border-color);
+        }
+
+        .resume-icon {
+            font-size: 4rem;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid var(--border-color);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: white;
+            background: var(--primary-gradient);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+
+        .contact-item div h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+        }
+
+        .contact-item div p,
+        .contact-item div a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .contact-item div a:hover {
+            color: var(--text-primary);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-input {
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 1rem;
+            background: var(--bg-primary);
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .form-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-primary);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .footer-social a:hover {
+            background: var(--primary-gradient);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Alert Styles */
+        .alert {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            z-index: 2000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+
+        .alert.show {
+            transform: translateX(0);
+        }
+
+        .alert.success {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+        }
+
+        .alert.error {
+            background: linear-gradient(135deg, #f56565, #e53e3e);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-social {
+                gap: 0.5rem;
+            }
+
+            .nav-social a {
+                width: 35px;
+                height: 35px;
+                font-size: 0.8rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                justify-content: center;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .about-avatar {
+                width: 200px;
+                height: 200px;
+                font-size: 3rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 0.75rem;
+            }
+
+            .skill-badge {
+                padding: 1rem 0.5rem;
+            }
+
+            .skill-badge i {
+                font-size: 1.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .project-links {
+                flex-direction: column;
+            }
+
+            .certs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .education-timeline {
+                padding-left: 1.5rem;
+            }
+
+            .education-item::before {
+                left: -2.25rem;
+            }
+
+            .alert {
+                right: 10px;
+                left: 10px;
+                transform: translateY(-100px);
+            }
+
+            .alert.show {
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .hero-content {
+                padding: 0 1rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-tagline {
+                font-size: 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">Udutha Varun</a>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                <li><a href="#resume" class="nav-link">Resume</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-social">
+                <a href="https://github.com/Varunudutha" target="_blank" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/varun-udutha-67b137265/" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">Udutha Varun</h1>
+            <h2 class="hero-subtitle">Computer Science Engineering (IoT) Student</h2>
+            <p class="hero-tagline">Passionate CS student aiming to apply software development skills in a growth-driven tech role while enhancing real-world engineering experience</p>
+            <div class="hero-buttons">
+                <a href="#resume" class="btn btn-primary">
+                    <i class="fas fa-download"></i>
+                    Download Resume
+                </a>
+                <a href="https://github.com/Varunudutha" target="_blank" class="btn btn-outline">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/varun-udutha-67b137265/" target="_blank" class="btn btn-outline">
+                    <i class="fab fa-linkedin"></i>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section fade-in" id="about">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-subtitle">Passionate Computer Science Engineering student with a strong academic background</p>
+        <div class="about-grid">
+            <div class="about-image">
+                <div class="about-avatar">UV</div>
+            </div>
+            <div class="about-content">
+                <p>
+                    I'm a dedicated Computer Science Engineering (IoT) student at Malla Reddy Engineering College, Hyderabad, 
+                    with an impressive CGPA of 8.68. My academic journey reflects my commitment to excellence and passion 
+                    for technology and software development.
+                </p>
+                <p>
+                    With hands-on experience in web development technologies including React.js, Node.js, and database management, 
+                    I've successfully developed practical applications that solve real-world problems. My projects demonstrate 
+                    my ability to work with modern tech stacks and deliver functional solutions.
+                </p>
+                <p>
+                    I've earned multiple certifications in Java, SQL, and problem-solving, showcasing my commitment to continuous 
+                    learning. I've solved 100+ Data Structures and Algorithms problems on LeetCode and earned a 5-star Java badge 
+                    on HackerRank, demonstrating strong programming fundamentals and analytical thinking.
+                </p>
+            </div>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-badge">
+                <i class="fas fa-code"></i>
+                <span>C</span>
+            </div>
+            <div class="skill-badge">
+                <i class="fab fa-java"></i>
+                <span>Java</span>
+            </div>
+            <div class="skill-badge">
+                <i class="fab fa-js-square"></i>
+                <span>JavaScript</span>
+            </div>
+            <div class="skill-badge">
+                <i class="fab fa-react"></i>
+                <span>React.js</span>
+            </div>
+            <div class="skill-badge">
+                <i class="fab fa-node-js"></i>
+                <span>Node.js</span>
+            </div>
+            <div class="skill-badge">
+                <i class="fas fa-server"></i>
+                <span>Express.js</span>
+            </div>
+            <div class="skill-badge">
+                <i class="fab fa-html5"></i>
+                <span>HTML</span>
+            </div>
+            <div class="skill-badge">
+                <i class="fab fa-css3-alt"></i>
+                <span>CSS</span>
+            </div>
+            <div class="skill-badge">
+                <i class="fab fa-bootstrap"></i>
+                <span>Bootstrap</span>
+            </div>
+            <div class="skill-badge">
+                <i class="fas fa-database"></i>
+                <span>MySQL</span>
+            </div>
+            <div class="skill-badge">
+                <i class="fab fa-git-alt"></i>
+                <span>Git</span>
+            </div>
+            <div class="skill-badge">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section fade-in" id="education">
+        <h2 class="section-title">Education</h2>
+        <p class="section-subtitle">Academic journey and achievements</p>
+        <div class="education-timeline">
+            <div class="education-item">
+                <h3>Malla Reddy Engineering College, Hyderabad, Telangana</h3>
+                <h4>B.Tech - Computer Science Engineering (IoT)</h4>
+                <div class="duration">2022 – 2026</div>
+                <div class="grade">CGPA: 8.68</div>
+            </div>
+            <div class="education-item">
+                <h3>Sri Vijaya Sai Junior College, Bodhan, Telangana</h3>
+                <h4>Telangana State Board of Intermediate Education</h4>
+                <div class="duration">2020 – 2022</div>
+                <div class="grade">Grade: 93.1%</div>
+            </div>
+            <div class="education-item">
+                <h3>Telangana State Model School, Nagireddypet, Telangana</h3>
+                <h4>SSC (10th Standard)</h4>
+                <div class="duration">2019 – 2020</div>
+                <div class="grade">GPA: 8.3</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section fade-in" id="projects">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-subtitle">Practical applications showcasing technical skills</p>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-vote-yea"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Online Voting Platform</h3>
+                    <div class="project-date">December 2024</div>
+                    <p class="project-description">
+                        A comprehensive Online Voting System designed to modernize the electoral process with 
+                        secure, transparent, and efficient voting mechanisms.
+                    </p>
+                    <div class="project-features">
+                        <ul>
+                            <li>Designed and developed system allowing organizers to create elections and share public links for secure vote casting</li>
+                            <li>Implemented real-time vote counting and result announcement features, ensuring transparency</li>
+                            <li>Built intuitive and user-friendly interface for both voters and administrators</li>
+                            <li>Eliminated manual effort through automation and digital processes</li>
+                        </ul>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">HTML</span>
+                        <span class="tech-badge">Tailwind CSS</span>
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">Express</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://online-voting-platform-0ekm.onrender.com/" class="project-btn project-btn-primary" onclick="showDemoAlert()">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live Demo
+                        </a>
+                        <a href="https://github.com/Varunudutha/Online-Voting-Platform/tree/master/Online-Voting-Platform-master" target="_blank" class="project-btn project-btn-secondary">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-film"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Movie Explorer App</h3>
+                    <div class="project-date">June 2025</div>
+                    <p class="project-description">
+                        A feature-rich React.js movie exploration application that provides users with comprehensive 
+                        movie information and advanced filtering capabilities.
+                    </p>
+                    <div class="project-features">
+                        <ul>
+                            <li>Built React.js movie explorer app using the TMDB API with debounced search functionality</li>
+                            <li>Implemented dynamic filters including genre, year, language, and sort options</li>
+                            <li>Developed responsive UI with Bootstrap framework for optimal user experience across devices</li>
+                            <li>Added dark mode toggle feature to enhance accessibility and user preference</li>
+                            <li>Deployed on Vercel with CI/CD pipeline for seamless updates and deployment</li>
+                        </ul>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">React.js</span>
+                        <span class="tech-badge">Bootstrap</span>
+                        <span class="tech-badge">TMDB API</span>
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">Vercel</span>
+                        <span class="tech-badge">CI/CD</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://movie-explorer-app-git-master-varun-uduthas-projects.vercel.app/" class="project-btn project-btn-primary" onclick="showDemoAlert()">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live Demo
+                        </a>
+                        <a href="https://github.com/Varunudutha/Movie-Explorer-App" target="_blank" class="project-btn project-btn-secondary">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications & Achievements Section -->
+    <section class="section fade-in" id="certifications">
+        <h2 class="section-title">Certifications & Achievements</h2>
+        <p class="section-subtitle">Professional development and recognition</p>
+        <div class="certs-grid">
+            <div class="cert-card">
+                <h3><i class="fas fa-certificate"></i> Certifications</h3>
+                <ul class="cert-list">
+                    <li><strong>Java – Udemy:</strong> Mastered Core Java concepts, including OOP, data structures, and exception handling</li>
+                    <li><strong>SQL (Intermediate) – HackerRank:</strong> Proficient in relational database querying</li>
+                    <li><strong>C Programming Language – tutorscampus.com:</strong> Covered data types, loops, functions</li>
+                    <li><strong>Problem Solving (Basic) – HackerRank:</strong> Basics of DSA including arrays, sorting, and searching</li>
+                </ul>
+            </div>
+            <div class="cert-card">
+                <h3><i class="fas fa-trophy"></i> Achievements</h3>
+                <ul class="cert-list">
+                    <li><strong>5-star Java badge on HackerRank</strong> - Demonstrating advanced Java programming skills</li>
+                    <li><strong>Virtual internships through Forage</strong> - Successfully completed industry-relevant projects</li>
+                    <li><strong>100+ LeetCode problems solved</strong> - Strong foundation in Data Structures and Algorithms</li>
+                    <li><strong>Academic Excellence</strong> - Consistent high performance with 8.68 CGPA</li>
+                </ul>
+            </div>
+            <div class="cert-card">
+                <h3><i class="fas fa-users"></i> Leadership</h3>
+                <ul class="cert-list">
+                    <li><strong>Team Leadership:</strong> Led a team to build a Blockchain-based Certificate Verification System for secure credential validation</li>
+                    <li><strong>Project Management:</strong> Coordinated development efforts and ensured project delivery</li>
+                    <li><strong>Technical Mentoring:</strong> Guided team members in implementation and best practices</li>
+                </ul>
+            </div>
+            <div class="cert-card">
+                <h3><i class="fas fa-brain"></i> Core Concepts</h3>
+                <ul class="cert-list">
+                    <li><strong>Data Structures & Algorithms (DSA)</strong> - Strong problem-solving foundation</li>
+                    <li><strong>Object-Oriented Programming (OOP)</strong> - Design patterns and principles</li>
+                    <li><strong>Operating Systems</strong> - System-level understanding</li>
+                    <li><strong>Computer Networks</strong> - Networking protocols and architecture</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section class="section fade-in" id="resume">
+        <h2 class="section-title">Resume</h2>
+        <p class="section-subtitle">Download my complete professional resume</p>
+        <div class="resume-content">
+            <div class="resume-icon">
+                <i class="fas fa-file-download"></i>
+            </div>
+            <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Professional Resume</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+                Get a comprehensive overview of my education, skills, projects, certifications, and achievements. 
+                Available in text format for easy viewing and ATS compatibility.
+            </p>
+            <a href="#" class="btn btn-primary" onclick="downloadResume()">
+                <i class="fas fa-download"></i>
+                Download Resume
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section fade-in" id="contact">
+        <h2 class="section-title">Contact Me</h2>
+        <p class="section-subtitle">Let's connect and discuss opportunities</p>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3 style="margin-bottom: 1.5rem; color: var(--text-primary);">Get In Touch</h3>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <p>uduthavarun968@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+91 9347764310</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Location</h4>
+                        <p>Hyderabad, Telangana, India</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <div>
+                        <h4>GitHub</h4>
+                        <a href="https://github.com/Varunudutha" target="_blank">github.com/Varunudutha</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <div>
+                        <h4>LinkedIn</h4>
+                        <a href="https://www.linkedin.com/in/varun-udutha" target="_blank">linkedin.com/in/varun-udutha</a>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject *</label>
+                    <input type="text" id="subject" name="subject" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" class="form-input form-textarea" required></textarea>
+                </div>
+                <button type="submit" class="form-submit">
+                    <i class="fas fa-paper-plane"></i>
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-social">
+            <a href="https://github.com/Varunudutha" target="_blank" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/varun-udutha" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:uduthavarun968@gmail.com" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+        <p>&copy; 2025 Udutha Varun. All rights reserved. Built with ❤️</p>
+    </footer>
+
+    <script>
+        // Scroll Progress Bar
+        function updateScrollProgress() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.querySelector('.scroll-progress').style.width = scrollPercent + '%';
+        }
+
+        // Navbar scroll effect
+        function handleNavbarScroll() {
+            const navbar = document.getElementById('navbar');
+            if (window.pageYOffset > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+
+        // Active navigation link
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Scroll event listener
+        window.addEventListener('scroll', () => {
+            updateScrollProgress();
+            handleNavbarScroll();
+            updateActiveNavLink();
+            handleScrollAnimations();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name').trim();
+            const email = formData.get('email').trim();
+            const subject = formData.get('subject').trim();
+            const message = formData.get('message').trim();
+            
+            // Basic validation
+            if (!name || !email || !subject || !message) {
+                showAlert('Please fill in all required fields.', 'error');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showAlert('Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            // Simulate form submission
+            const submitBtn = this.querySelector('.form-submit');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                showAlert('Thank you for your message! I will get back to you soon.', 'success');
+                this.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // Alert system
+        function showAlert(message, type) {
+            // Remove existing alerts
+            const existingAlert = document.querySelector('.alert');
+            if (existingAlert) {
+                existingAlert.remove();
+            }
+            
+            // Create new alert
+            const alert = document.createElement('div');
+            alert.className = `alert ${type}`;
+            alert.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                ${message}
+            `;
+            
+            document.body.appendChild(alert);
+            
+            // Show alert
+            setTimeout(() => alert.classList.add('show'), 100);
+            
+            // Hide alert after 5 seconds
+            setTimeout(() => {
+                alert.classList.remove('show');
+                setTimeout(() => alert.remove(), 300);
+            }, 5000);
+        }
+
+        // Demo alert function
+        // function showDemoAlert() {
+        //     showAlert('Demo link will be available soon! Check out the GitHub repository for now.', 'error');
+        // }
+
+        // Resume download function
+        function downloadResume() {
+            // Option 1: Direct PDF download (you need to upload your PDF to a hosting service)
+            // Replace 'YOUR_RESUME_PDF_URL' with the actual URL of your hosted PDF
+            const resumePdfUrl = 'https://drive.google.com/uc?export=download&id=YOUR_GOOGLE_DRIVE_FILE_ID';
+            
+            // Method 1: For Google Drive hosted PDF
+            // 1. Upload your PDF to Google Drive
+            // 2. Right-click → Get link → Change to "Anyone with the link"
+            // 3. Copy the file ID from the URL (the part after /d/ and before /view)
+            // 4. Replace YOUR_GOOGLE_DRIVE_FILE_ID above with your actual file ID
+            
+            // Method 2: For GitHub hosted PDF
+            // const resumePdfUrl = 'https://github.com/Varunudutha/portfolio/raw/main/Udutha_Varun_Resume.pdf';
+            
+            // Method 3: For other hosting services (Netlify, Vercel, etc.)
+            // const resumePdfUrl = './assets/Udutha_Varun_Resume.pdf';
+            
+            try {
+                // Create a temporary link and trigger download
+                const link = document.createElement('a');
+                link.href = resumePdfUrl;
+                link.download = 'Udutha_Varun_Resume.pdf';
+                link.target = '_blank';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                showAlert('Resume download started!', 'success');
+            } catch (error) {
+                // Fallback: Open PDF in new tab if direct download fails
+                window.open(resumePdfUrl, '_blank');
+                showAlert('Resume opened in new tab. Right-click and save to download.', 'success');
+            }
+            
+            // Alternative fallback: Generate text version if PDF is not available
+            // Uncomment the following code if you want a text fallback
+            /*
+            if (!resumePdfUrl || resumePdfUrl.includes('YOUR_GOOGLE_DRIVE_FILE_ID')) {
+                // Generate text version as fallback
+                const resumeContent = `UDUTHA VARUN
+# uduthavarun968@gmail.com  +91 9347764310  Portfolio  LinkedIn  GitHub
+
+Career Objective
+Passionate CS student aiming to apply software development skills in a growth-driven tech role while enhancing real-world engineering experience.
+
+[... rest of your resume content ...]
+                `;
+                
+                const blob = new Blob([resumeContent], { type: 'text/plain' });
+                const url = window.URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'Udutha_Varun_Resume.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+                
+                showAlert('Text version downloaded! Please upload your PDF resume for better results.', 'error');
+            }
+            */
+        }
+
+        // Mobile menu functionality (basic implementation)
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            showAlert('Mobile menu functionality can be enhanced with a slide-out menu!', 'error');
+        });
+
+        // Initialize animations on page load
+        window.addEventListener('load', function() {
+            // Trigger initial scroll animations
+            handleScrollAnimations();
+            
+            // Add staggered animation to skill badges
+            const skillBadges = document.querySelectorAll('.skill-badge');
+            skillBadges.forEach((badge, index) => {
+                badge.style.animationDelay = `${index * 0.1}s`;
+                badge.style.animation = 'fadeInUp 0.6s ease forwards';
+            });
+            
+            // Add staggered animation to project cards
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.2}s`;
+            });
+
+            // Add staggered animation to education items
+            const educationItems = document.querySelectorAll('.education-item');
+            educationItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.3}s`;
+                item.style.animation = 'fadeInUp 0.6s ease forwards';
+            });
+
+            // Add staggered animation to cert cards
+            const certCards = document.querySelectorAll('.cert-card');
+            certCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.2}s`;
+                card.style.animation = 'fadeInUp 0.6s ease forwards';
+            });
+        });
+
+        // Add hover effects to interactive elements
+        document.querySelectorAll('.btn, .project-btn, .skill-badge, .cert-card').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.style.transform = this.style.transform || 'translateY(0)';
+                this.style.transform = this.style.transform.replace(/translateY\([^)]*\)/, 'translateY(-3px)');
+            });
+            
+            element.addEventListener('mouseleave', function() {
+                this.style.transform = this.style.transform.replace(/translateY\([^)]*\)/, 'translateY(0)');
+            });
+        });
+
+        // Keyboard navigation support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+
+        document.addEventListener('mousedown', function() {
+            document.body.classList.remove('keyboard-navigation');
+        });
+
+        // Performance optimization: Throttle scroll events
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            if (scrollTimeout) {
+                window.cancelAnimationFrame(scrollTimeout);
+            }
+            
+            scrollTimeout = window.requestAnimationFrame(() => {
+                updateScrollProgress();
+                handleNavbarScroll();
+                updateActiveNavLink();
+                handleScrollAnimations();
+            });
+        });
+    </script>
+</body>
+</html>
