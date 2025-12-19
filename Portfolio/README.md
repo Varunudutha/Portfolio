@@ -6,8 +6,7 @@ Designed with a clean UI, smooth animations, and recruiter-friendly structure.
 ---
 
 ## 🚀 Live Demo
-🔗 **Portfolio Website:** https://varunudutha.github.io/Portfolio/  
-🔗 **GitHub Repository:** https://github.com/Varunudutha/Portfolio
+🔗 **Portfolio Website:** [https://varunudutha.github.io/Portfolio/](https://portfolio-nine-lac-10.vercel.app/)  
 
 ---
 
