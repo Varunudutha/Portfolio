@@ -1,73 +1,80 @@
-# Welcome to your Lovable project
+# 🌐 Varun – Developer Portfolio
 
-## Project info
+A modern, responsive, and interactive developer portfolio showcasing my skills, projects, and experience.  
+Designed with a clean UI, smooth animations, and recruiter-friendly structure.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+---
 
-## How can I edit this code?
+## 🚀 Live Demo
+🔗 **Portfolio Website:** https://varunudutha.github.io/Portfolio/  
+🔗 **GitHub Repository:** https://github.com/Varunudutha/Portfolio
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## ✨ Features
+- Modern and minimal UI
+- Responsive design (mobile, tablet, desktop)
+- Smooth animations and interactions
+- Clean project presentation
+- Dark & light mode support
+- Optimized for recruiters and placements
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠️ Tech Stack
 
-**Use your preferred IDE**
+### Frontend
+- React.js
+- HTML5
+- CSS3
+- JavaScript (ES6+)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
+### Styling & Animations
 - Tailwind CSS
+- Framer Motion
 
-## How can I deploy this project?
+### Developer Tools
+- Git
+- GitHub
+- VS Code
+- Postman
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
+## 📂 Projects Highlighted
 
-Yes, you can!
+### 🎬 Movie Explorer App
+- Discover movies with search, filters, and ratings
+- Clean and scalable UI
+- Built with modern frontend practices
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### 🗳️ Online Voting Platform
+- Secure and reliable digital voting system
+- Focused on authentication and trust
+- Designed with a clean and professional interface
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+---
+
+## 📊 Skills Overview
+- Programming & Problem Solving
+- Frontend & Backend Development
+- Data Analytics Tools (NumPy, Pandas, Matplotlib, Seaborn)
+- Databases & Core CS Concepts
+- Developer Tools & Workflow
+
+---
+
+## 📦 Getting Started (Run Locally)
+
+```bash
+# Clone the repository
+git clone https://github.com/Varunudutha/Portfolio.git
+
+# Navigate into the project
+cd Portfolio
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev   # or npm start
