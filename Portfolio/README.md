@@ -42,15 +42,15 @@ Designed with a clean UI, smooth animations, and recruiter-friendly structure.
 
 ## 📂 Projects Highlighted
 
-### 🎬 Movie Explorer App
-- Discover movies with search, filters, and ratings
-- Clean and scalable UI
-- Built with modern frontend practices
-
 ### 🗳️ Online Voting Platform
 - Secure and reliable digital voting system
 - Focused on authentication and trust
 - Designed with a clean and professional interface
+  
+### 🎬 Movie Explorer App
+- Discover movies with search, filters, and ratings
+- Clean and scalable UI
+- Built with modern frontend practices
 
 ---
 
