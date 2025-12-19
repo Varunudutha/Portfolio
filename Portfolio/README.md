@@ -1,4 +1,4 @@
-# 🌐 Varun – Developer Portfolio
+# 🌐 Varun – Portfolio
 
 A modern, responsive, and interactive developer portfolio showcasing my skills, projects, and experience.  
 Designed with a clean UI, smooth animations, and recruiter-friendly structure.
